@@ -2,70 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>CGrid</title>
-    
+    <!--<script src="../Scripts/jquery.min.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.8.3.min.js "></script>
-    <script src="cGrid.js"></script>
-    
+    <script src="cScroll.js"></script>
     <script type="text/javascript">
-        
         $(document).ready(function () {
-            
-            $("#changeArray").live("click", function () {
-                var random = Math.floor(Math.random() * 5);
-                switch (random) {
-                    case 1:
-                        {
-                            arrayData = [["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"], ["4 Dimensional array", "4", "Vignesh test", "test 4"]];
-                            $("#cGridTable").cGrid(arrayData, "600", "600");
-                            break;
-                        }
-                    case 2:
-                        {
-                            arrayData = [["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"], ["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"],["5 Dimensional array", "5", "Vignesh test", "Dummy Column", "one more"]];
-                            $("#cGridTable").cGrid(arrayData, "600", "600");
-                            break;
-                        }
-                    case 3:
-                        {
-                            
-                            arrayData = [["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"], ["6 Dimensional", "3", "Vicky", "dummy", "one more", "two more"] ];
-                            $("#cGridTable").cGrid(arrayData, "600", "600");
-                            break;
-                        }
-                    case 4:
-                        {
-                            arrayData = [["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"], ["3 Dimensional", "3", "Vigneshtest"]];
-                            $("#cGridTable").cGrid(arrayData, "600", "600");
-                            break;
-                        }
-                    case 5:
-                        {
-                            arrayData = [["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"], ["1 Dimensional"]];
-                            $("#cGridTable").cGrid(arrayData, "600", "600");
-                            break;
-                        }
-                    default:
-                        {
-                            arrayData = [["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"], ["2 Dimensional", "Vicky"]];
-                            $("#cGridTable").cGrid(arrayData, "600", "600");
-                            break;
-                        }
-
-                }
-            });
+            $("#Testing").cScroller(this,200);
         });
-        
-        
-
     </script>
 </head>
 <body>
-    <input type="button" id="changeArray" value="Change Array Dimension" /><br />
-
-    <div id="cGrid">
-        <table id="cGridTable">
-            
-        </table>
-    </div>
+        <div id="Testing">
+              <h4>Browsers Supported</h4>
+            <ol>
+                <li>Internet explorer 8.0 +</li>
+                <li>Google Chrome</li>
+                <li>Firefox</li>
+                <li>Safari</li>
+            </ol>
+            <div><u>About Us</u><br /></div>
+            <div>cScroll is a very light weight plugin that is developed to serve the purpose of a scroll bar. <br /> At the same time it is light weight which will improve the performance of application since it takes very less time to load</div>
+            <div>Anyway we would recommend you to copy the contents of the plugin and have it in one of the js file you use to reduce the number of server hits<br /></div>
+            <div>We would appreciate if you could preserve the credits :) </div>
+        </div>
 </body>
 </html>
