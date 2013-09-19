@@ -9,81 +9,94 @@
 ****************************************************************************************************************************************/
 var cSMove;
 $.fn.cScroller = function (scEl, divheight, speed) {
-    if (this.selector) {jQ = this;}
-    else {jQ = scEl;}
+    if (this.selector) { jQ = this; }
+    else { jQ = scEl; }
     if (!divheight) { divheight = "300px" } if (!speed) { speed = 20; }
     setTimeout(function applycss() {
-        $(".cGridDiv").css({ "width": "100%", "height": divheight, "position": "absolute","overflow":"hidden" });
+        $(".cGridDiv").css({ "width": "100%", "height": divheight, "position": "absolute", "overflow": "hidden" });
         $(".cGridTable").css({ "width": "98%", "float": "left", "position": "absolute", "left": "0%", "height": divheight, "overflow": "visible", "top": "0%" });
         $(".cScrollContainer").css({ "width": "5%", "height": "100%", "background": "#dfeefa", "margin-left": "98%" });
-        $(".cScroll").css({ "outline": "2px solid #fff", "left": "3px", "width": "21%", "background": "green", "float": "left", "position": "relative", "top": "0%","cursor":"pointer" });
+        $(".cScroll").css({ "outline": "2px solid #fff", "left": "3px", "width": "21%", "background": "green", "float": "left", "position": "relative", "top": "0%", "cursor": "pointer" });
         $(".odd").css({ "background": "#dfeefa" });
         $(".even").css({ "background": "white" });
     }, 100);
     jQ.parent().css({ "overflow": "hidden", "width": "600px", "height": divheight, "position": "absolute" });
-    if (jQ.parent().is(".cGridTable")) {jQ.html('');}
-    if (jQ.parent().is(".cGridDiv")) {}
-    else if (jQ.parent().is(".cGridTable")) {}
+    if (jQ.parent().is(".cGridTable")) { jQ.html(''); }
+    if (jQ.parent().is(".cGridDiv")) { }
+    else if (jQ.parent().is(".cGridTable")) { }
     else {
         jQ.wrap('<div class="cGridDiv"></div>');
         setTimeout(function () { jQ.wrap('<div class="cGridTable"></div>'); }, 10);
         setTimeout(function () { jQ.parents('.cGridDiv').append("<div class='cScrollContainer'><div class='cScroll'></div></div>"); }, 10);
         setTimeout(function () { addMousewheel(); }, 1000);
     }
-    setTimeout(assignVar, 100);jQ.css({ "width": "98%" });
+    setTimeout(assignVar, 100); jQ.css({ "width": "98%" });
 };
 function assignVar() {
-    $tableheight = $('.cGridTable')[0].scrollHeight;$divheight = $(".cGridTable").height();$scrollContainerHeight = $(".cScrollContainer").height();
-    if ($tableheight > $divheight) {$h2 = ($divheight * $scrollContainerHeight) / $tableheight;$(".cScroll").css("height", $h2 + "px");}
-    else {$(".cScroll").css("height", $divheight + "px");}
+    $tableheight = $('.cGridTable')[0].scrollHeight;
+    $divheight = $(".cGridTable").height();
+    $scrollContainerHeight = $(".cScrollContainer").height();
+    if ($tableheight > $divheight) { $h2 = ($divheight * $scrollContainerHeight) / $tableheight; $(".cScroll").css("height", $h2 + "px"); }
+    else { $(".cScroll").css("height", $divheight + "px"); }
+    $table = $('.cGridTable');
+    $scroll = $('.cScroll');
+    $maxheight = $('.cGridTable')[0].scrollHeight - $(".cGridTable").height();
+    $scrolltop = $('.cGridDiv').offset().top;
+    mid = $(".cScroll").height() / 2;
+}
+
+
+
+function mouseMoveClick(flag, e) {
+    $scrollmove = (e.pageY - $scrolltop) - mid;
+    if ($(".cScroll").height() < $(".cScrollContainer").height()) {
+        if (flag > e.pageY) {
+            if ($scroll.position().top > 0) {
+                $scrollmove = ($scrollmove < 0) ? 0 : $scrollmove;
+                $(".cScroll").css("top", $scrollmove + "px");
+                scrollMove($(".cScroll").position().top, 'sb');
+            }
+        }
+        else {
+            if (Math.abs($table.position().top) <= $maxheight) {
+                $scrollmove = ($scrollmove > ($(".cScrollContainer").height() - $scroll.height())) ? $(".cScrollContainer").height() - $scroll.height() : $scrollmove;
+                $(".cScroll").css("top", $scrollmove + "px");
+                scrollMove($(".cScroll").position().top, 'sb');
+            }
+        }
+        return e.pageY;
+    }
 }
 var $dragging = null;
-var temp=0;
-$('.cScrollContainer').live("mousemove", function (e) {
+var temp = 0;
+$('.cScroll').live("mousemove", function (e) {
     if ($dragging) {
-        $table = $('.cGridTable');
-        $scroll = $('.cScroll');
-        $maxheight = $('.cGridTable')[0].scrollHeight - $(".cGridTable").height();
-        if ($(".cScroll").height() < $(".cScrollContainer").height()) {
-            if (temp > e.pageY) {
-                if ($scroll.position().top > 0) {
-                    mid = $(".cScroll").height() / 2;
-                    $(".cScroll").css("top", (e.pageY - mid) + "px");
-                    scrollMove($(".cScroll").position().top, 'sb');
-                }
-            }
-            else {
-                if (Math.abs($table.position().top) <= $maxheight) {
-                    mid = $(".cScroll").height() / 2;
-                    $(".cScroll").css("top", (e.pageY - mid) + "px");
-                    scrollMove($(".cScroll").position().top, 'sb');
-                }
-            }
-            temp = e.pageY;
-        }
+        temp = mouseMoveClick(temp, e);
     }
 });
-$('.cScrollContainer').live("mousedown", "div", function (e) {$dragging = $('.cScroll'); $dragging.css({ "background": "#007acc" }); });
+$('.cScroll').live("mousedown", "div", function (e) { $dragging = $('.cScroll'); $dragging.css({ "background": "#007acc" }); });
 $(document).live("mouseup", function (e) {
     $dragging = null; $(".cScroll").css({ "background": "#008000" });
-    $(window).unbind("mousemove"); });
+    $(window).unbind("mousemove");
+});
+var temp1 = 0;
+$(".cScrollContainer").live("click", function (e) {
+
+    temp1 = mouseMoveClick(temp1, e);
+});
+
 $(document).live("keydown", function (e) {
     if (cSMove) { pix = cSMove } else { pix = 20; }//scroll limit here
     if (e.keyCode == 40) { scrollMove(-pix, 'kb') }//key up button
     else if (e.keyCode == 38) { scrollMove(pix, 'kb') }
 });
 function addMousewheel() {
-    $('.cGridDiv').bind('mousewheel', function (e) {//#cGridTable .cGridDiv
-        if (e.originalEvent.wheelDelta / 120 > 0) {scrollMove(20, 'kb');}
-        else {scrollMove(-20, 'kb');}
+    $('.cGridDiv').bind('mousewheel DOMMouseScroll', function (e) {
+        if ((e.originalEvent.wheelDelta / 120 > 0) || (e.originalEvent.detail < 0)) { scrollMove(20, 'kb'); }
+        else { scrollMove(-20, 'kb'); }
     });
 }
 function scrollMove(pix, sender) {
-    $table = $('.cGridTable');
-    $scroll = $('.cScroll');
-    $maxheight = $('.cGridTable')[0].scrollHeight - $(".cGridTable").height();
-    $tableheight = $('.cGridTable')[0].scrollHeight;
-    $divheight = $(".cGridTable").height();
     $scrollpix = Math.abs((pix / ($tableheight / $divheight)));
     switch (sender) {
         case 'kb':
@@ -99,13 +112,13 @@ function scrollMove(pix, sender) {
             else {//move down
                 if (Math.abs($table.position().top) <= $maxheight) {
                     $table.css({ "top": $table.position().top + pix });
-                    $scroll.css({ "top":  "+="+ $scrollpix });
+                    $scroll.css({ "top": "+=" + $scrollpix });
                 }
             }
             break;
         case 'sb':
             tabletop = (pix * $tableheight) / $divheight;
-            $table.css({ "top": -(tabletop)});
+            $table.css({ "top": -(tabletop) });
             break;
     }
 };
