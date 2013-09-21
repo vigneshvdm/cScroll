@@ -24,10 +24,15 @@
     "jquery": "*"
   },
   "keywords": [
-    "Scroll",
-    "light weight",
-    "scroll bar",
-    "tiny scroll",
-    "jquery-ui"
+    "ui",
+"jquery",
+"animation",
+"form",
+"slider",
+"Scroll",
+"light weight",
+"scroll bar",
+"tiny scroll",
+"jquery-ui"
   ]
 }
